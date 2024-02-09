@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="snap_track_menu" name="Snap Track"/>
+    <menuitem id="snap_track_sub_menu" name="Advertisements" parent="snap_track_menu" action="snaptrack_booking_action"/>
+    <menuitem id="snap_track_second_sub_menu" name="Booking" parent="snap_track_sub_menu" action="snaptrack_booking_action"/>
+</odoo>

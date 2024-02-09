@@ -8,7 +8,15 @@ class User(models.Model):
     name = fields.Char(string="Name")
     email = fields.Char(string="Email")
     services = fields.Selection(
-        [("wedding", "Wedding"), ("casual", "Casual"), ("product", "product")]
+        string="Services",
+        selection=[
+            ("wedding", "Wedding Photography"),
+            ("casual", "Casual Photography"),
+            ("product", "Product Photography"),
+        ],
     )
-    services = fields.Selection([("ph1", "Ankit"), ("ph2", "Aman"), ("ph3", "Ayan")])
+    photographers = fields.Selection(
+        string="Prefered Photographer",
+        selection=[("ph1", "Ankit"), ("ph2", "Aman"), ("ph3", "Ayan")],
+    )
     prefered_date = fields.Date("Prefered Date")
