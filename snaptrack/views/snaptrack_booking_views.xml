@@ -1,9 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<record id="snaptrack_booking_action" model="ir.actions.act_window">
-<field name="name">Test action</field>
-    <field name="type">ir.actions.act_window</field>
-    <field name="res_model">snap.track</field>
- <field name="view_mode">tree,form</field>
-</record>
+    <record id="snaptrack_booking_action" model="ir.actions.act_window">
+        <field name="name">Test action</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">snap.track</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="snaptrack_booking_view_tree" model="ir.ui.view">
+        <field name="name">snap.track.view.tree</field>
+        <field name="model">snap.track</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="services"/>
+                <field name="photographers"/>
+                <field name="prefered_date"/>
+            </tree>
+        </field>
+    </record>
+    <record id="snaptrack_booking_view_form" model="ir.ui.view">
+        <field name="name">snap.track.view.form</field>
+        <field name="model">snap.track</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="email"/>
+                            <field name="phone"/>
+                        </group>
+                        <group>
+                            <field name="services"/>
+                            <field name="photographers" />
+                            <field name="prefered_date" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <group>
+                                <field name="description"/>
+                                <field name="last_seen"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
 </odoo>
