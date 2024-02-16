@@ -17,10 +17,8 @@ class User(models.Model):
             ("product", "Product Photography"),
         ],
     )
-    photographers = fields.Selection(
-        string="Prefered Photographer",
-        selection=[("ph1", "Ankit"), ("ph2", "Aman"), ("ph3", "Ayan")],
-    )
+    photographers = fields.Many2one("photographer.details")
     prefered_date = fields.Date("Prefered Date")
     active = fields.Boolean(string="Active", default=True)
     last_seen = fields.Datetime(string="Last Seen", default=fields.Datetime.now)
+    service_category_id = fields.One2many("service.category.details", "service_id")

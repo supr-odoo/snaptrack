@@ -1,1 +1,1 @@
-from . import snaptrack
+from . import snaptrack, photographer_details, service_category_details
