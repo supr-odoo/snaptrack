@@ -1,9 +1,8 @@
-from odoo import models, fields, api
+from odoo import api, fields, models
 
 
-class BookingRequest(models.Model):
-    _name = "snaptrack.booking.request"
-    _description = "Photography / Video Request"
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
 
     name = fields.Char(
         string="Request Number",
@@ -32,31 +31,29 @@ class BookingRequest(models.Model):
     preferred_date = fields.Date("Preferred Date")
     quotation_id = fields.Many2one("sale.order", string="Quotation")
     # category_id = fields.Many2one("snaptrack.service.category", string="Category")
-    # category = fields.Many2one("product.product", string="Product Category")
-    product_category_id = fields.Many2many("product.product", string="Product Category")
+    category = fields.Many2one("product.product", string="Product Category")
 
     def generate_quotation(self):
-        if not self.product_category_id:
+        if not self.category:
             return
-
-        order_lines = []
-        for product_category in self.product_category_id:
-            order_line = {
-                "product_id": product_category.id,
-                "price_unit": product_category.list_price,
-                "product_uom_qty": 1,
-            }
-            order_lines.append((0, 0, order_line))
-
         quotation_values = {
             "partner_id": self.customer_id.id,
             "partner_invoice_id": self.customer_id.id,
             "partner_shipping_id": self.customer_id.id,
-            "order_line": order_lines,
+            "order_line": [
+                (
+                    0,
+                    0,
+                    {
+                        "product_id": self.category.id,
+                        "price_unit": self.category.list_price,
+                        "product_uom_qty": 1,
+                    },
+                )
+            ],
         }
 
         quotation = self.env["sale.order"].create(quotation_values)
-        self.status = "assigned"
 
         return {
             "type": "ir.actions.act_window",

@@ -1,4 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_snaptrack_property,snap.track,model_snap_track,base.group_user,1,1,1,1
-snaptrack.access_photographer_details,access_photographer_details,snaptrack.model_photographer_details,base.group_user,1,1,1,1
-snaptrack.access_service_category_details,access_service_category_details,snaptrack.model_service_category_details,base.group_user,1,1,1,1
+access_snaptrack_booking_request,Access Snaptrack Booking Request,model_snaptrack_booking_request,base.group_user,1,1,1,1
+access_snaptrack_service_category,Access Snaptrack Service Category,model_snaptrack_service_category,base.group_user,1,1,1,1

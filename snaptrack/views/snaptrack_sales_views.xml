@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- <record id="snaptrack_sale_management_form_view" model="ir.ui.view">
+        <field name="name">snaptrack.sale.management.form.view</field>
+        <field name="model">snaptrack.booking.request</field>
+        <field name="inherit_id" ref="sale_management.sale_order_form_quote" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='partner_details']" position="inside">
+                <field name="name"></field>
+                <field name="description"></field>
+                <field name="preferred_date"></field>
+            </xpath>
+        </field>
+    </record> -->
+</odoo>
+

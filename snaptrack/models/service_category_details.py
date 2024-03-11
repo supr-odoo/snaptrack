@@ -1,10 +1,8 @@
 from odoo import fields, models
 
 
-class ServiceCategoryDetails(models.Model):
-    _name = "service.category.details"
+class ServiceCategory(models.Model):
+    _name = "snaptrack.service.category"
 
-    name = fields.Char(string="Name")
+    product_name = fields.Many2one("product.product", string="Product Category")
     price = fields.Float(string="Price")
-
-    service_id = fields.Many2one("snap.track")

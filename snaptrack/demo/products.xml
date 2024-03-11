@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="product.template" id="product_demo_1">
+        <field name="name">Product 1</field>
+        <field name="list_price">100.00</field>
+    </record>
+
+    <record model="product.template" id="product_demo_2">
+        <field name="name">Product 2</field>
+        <field name="list_price">150.00</field>
+    </record>
+</odoo>

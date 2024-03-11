@@ -3,8 +3,6 @@
     <menuitem id="snaptrack_menu" name="Snap Track"/>
     <menuitem id="snaptrack_sub_menu_customer" name="Customer" parent="snaptrack_menu" sequence="3"/>
     <menuitem id="snaptrack_sub_menu_photographer" name="Photographer Admin" parent="snaptrack_menu" sequence="4" />
-    <menuitem id="snaptrack_second_sub_menu" name="Booking" parent="snaptrack_sub_menu_customer" action="snaptrack_booking_action"/>
-    <menuitem id="snaptrack_sub_menu_booking_requests" name="Booking Requests" parent="snaptrack_sub_menu_photographer" sequence="5" action="booking_requests_action"/>
-    <menuitem id="snaptrack_sub_menu_add_photographer" name="Add Photographer" parent="snaptrack_sub_menu_photographer" sequence="6" action="photographer_details_action"/>
+    <menuitem id="snaptrack_second_sub_menu" name="Booking" parent="snaptrack_sub_menu_customer" action="booking_requests_action"/>
     <menuitem id="snaptrack_sub_menu_add_service_category" name="Add Service Category" parent="snaptrack_sub_menu_photographer" sequence="7" action="service_category_details_action"/>
 </odoo>

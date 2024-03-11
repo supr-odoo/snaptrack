@@ -1,56 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="booking_requests_action" model="ir.actions.act_window">
-        <field name="name">Test action</field>
+        <field name="name">Booking Requests</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">snap.track</field>
-        <field name="view_mode">kanban,form</field>
+        <field name="res_model">snaptrack.booking.request</field>
+        <field name="view_mode">tree,kanban,form</field>
     </record>
+
+    <record id="snaptrack_booking_requests_tree" model="ir.ui.view">
+        <field name="name">snaptrack.booking.request.tree</field>
+        <field name="model">snaptrack.booking.request</field>
+        <field name="arch" type="xml">
+            <tree string="Booking Requests">
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="status"/>
+                <field name="assigned_photographer_id"/>
+                <field name="quotation_id"/>
+                <field name="preferred_date"/>
+                <field name="product_category_id"/>
+            </tree>
+        </field>
+    </record>
+
     <record id="snaptrack_booking_requests_kanban" model="ir.ui.view">
-        <field name="name">booking.requests.view.kanban</field>
-        <field name="model">snap.track</field>
+        <field name="name">snaptrack.booking.request.kanban</field>
+        <field name="model">snaptrack.booking.request</field>
         <field name="arch" type="xml">
             <kanban>
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click">
-                            <field name="name"/>
+                            <div>
+                                <field name="name"/>
+                            </div>
+                            <div>
+                                <field name="customer_id"/>
+                            </div>
+                            <div>
+                                <field name="status"/>
+                            </div>
+                            <div>
+                                <field name="assigned_photographer_id"/>
+                            </div>
+                            <div>
+                                <field name="preferred_date"/>
+                            </div>
+                            <div>
+                                <field name="product_category_id"/>
+                            </div>
                         </div>
                     </t>
                 </templates>
             </kanban>
         </field>
     </record>
-    <record id="snaptrack_booking_view_form" model="ir.ui.view">
-        <field name="name">snap.track.view.form</field>
-        <field name="model">snap.track</field>
+    <record id="snaptrack_booking_request_view_kanban" model="ir.ui.view">
+        <field name="name">snaptrack.booking.request.view.kanban</field>
+        <field name="model">snaptrack.booking.request</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="product_category_id" records_draggable="0">
+                <field name="product_category_id">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <strong>
+                                            <h3>
+                                                <field name="product_category_id"/>
+                                            </h3>
+                                        </strong>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <span>Date:
+                                        <field name="preferred_date" />
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <span class="fa fa-user me-2">
+                                        <field name="customer_id" class="p-2"/>
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <field name="assigned_photographer_id"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="oe_kanban_bottom_right float-end">
+
+                                            <field name="assigned_photographer_id" widget="many2one_avatar_user"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </field>
+            </kanban>
+        </field>
+    </record>
+    <record id="snaptrack_booking_request_view_form" model="ir.ui.view">
+        <field name="name">snaptrack.booking.request.form</field>
+        <field name="model">snaptrack.booking.request</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="generate_quotation" string="Generate Quotation" invisible="status != 'new'" type="object" class="oe_highlight"/>
+                    <field name="status" widget="statusbar"/>
+                </header>
                 <sheet>
-                    <h1>
-                        <field name="name"/>
-                    </h1>
                     <group>
-                        <group>
-                            <field name="email"/>
-                            <field name="phone"/>
-                        </group>
-                        <group>
-                            <field name="services"/>
-                            <field name="photographers" />
-                            <field name="prefered_date" />
-                        </group>
+                        <field name="name"/>
+                        <field name="customer_id"/>
+                        <field name="request_details"/>
+                        <field name="status"/>
+                    </group>
+                    <group>
+                        <field name="assigned_photographer_id"/>
+                        <field name="preferred_date"/>
+                        <field name="product_category_id"/>
                     </group>
                     <notebook>
                         <page string="Description">
                             <group>
                                 <field name="description"/>
-                                <field name="last_seen"/>
-                            </group>
-                        </page>
-                        <page string="Add Product">
-                            <group>
-                                <field name="service_category_id"/>
                             </group>
                         </page>
                     </notebook>

@@ -3,21 +3,31 @@
     <record id="service_category_details_action" model="ir.actions.act_window">
         <field name="name">Add Category</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">service.category.details</field>
+        <field name="res_model">snaptrack.service.category</field>
         <field name="view_mode">tree,form</field>
     </record>
     <record id="service_category_details_view_form" model="ir.ui.view">
-        <field name="name">service.category.details.view.form</field>
-        <field name="model">service.category.details</field>
+        <field name="name">snaptrack.service.category.view.form</field>
+        <field name="model">snaptrack.service.category</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
                     <group>
-                        <field name = "name"/>
+                        <field name = "product_name"/>
                         <field name = "price"/>
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+    <record id="service_category_details_view_tree" model="ir.ui.view">
+        <field name="name">snaptrack.service.category.view.tree</field>
+        <field name="model">snaptrack.service.category</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="product_name" />
+                <field name="price" />
+            </tree>
         </field>
     </record>
 </odoo>
