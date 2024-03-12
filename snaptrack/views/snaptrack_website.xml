@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="booking_request_form" name="booking request form">
+        <t t-call="website.layout">
+            <div class="container">
+                <form method="post" action="/booking" class="mt-5">
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea id="description" name="description" class="form-control"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer_id">Customer:</label>
+                        <select id="customer_id" name="customer_id" class="form-control">
+                            <t t-foreach="customers" t-as="customer">
+                                <option t-att-value="customer.id" class="form-control">
+                                    <t t-esc="customer.name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="request_details">Request Details:</label>
+                        <textarea id="request_details" name="request_details" class="form-control"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="preferred_date">Preferred Date:</label>
+                        <input type="date" id="preferred_date" name="preferred_date" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product_category_id">Product Category:</label>
+                        <select id="product_category_id" name="product_category_id" class="form-control">
+                            <t t-foreach="product_categories" t-as="product">
+                                <option t-att-value="product.id" class="form-control" placeholder="hh">
+                                    <t t-esc="product.display_name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+        </t>
+    </template>
+    <record id="menu_properties" model="website.menu">
+        <field name="name">Booking</field>
+        <field name="url">/booking</field>
+        <field name="sequence" type="int">10</field>
+        <field name="parent_id" ref="website.main_menu"/>
+    </record>
+</odoo>

@@ -7,6 +7,7 @@
         "views/booking_request_views.xml",
         "views/service_category_details.xml",
         "views/snaptrack_sales_views.xml",
+        "views/snaptrack_website.xml",
         "views/snaptrack_menu.xml",
     ],
     "demo": ["demo/products.xml"],
