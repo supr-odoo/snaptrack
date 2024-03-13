@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <menuitem id="snaptrack_menu" name="Snap Track"/>
+    <menuitem id="snaptrack_menu" name="Snap Track" web_icon="snaptrack,static/description/image.png"/>
     <menuitem id="snaptrack_sub_menu_customer" name="Customer" parent="snaptrack_menu" sequence="3"/>
     <menuitem id="snaptrack_sub_menu_photographer" name="Photographer Admin" parent="snaptrack_menu" sequence="4" />
     <menuitem id="snaptrack_second_sub_menu" name="Booking" parent="snaptrack_sub_menu_customer" action="booking_requests_action"/>

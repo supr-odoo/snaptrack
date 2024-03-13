@@ -23,44 +23,12 @@
         </field>
     </record>
 
-    <record id="snaptrack_booking_requests_kanban" model="ir.ui.view">
-        <field name="name">snaptrack.booking.request.kanban</field>
-        <field name="model">snaptrack.booking.request</field>
-        <field name="arch" type="xml">
-            <kanban>
-                <templates>
-                    <t t-name="kanban-box">
-                        <div class="oe_kanban_global_click">
-                            <div>
-                                <field name="name"/>
-                            </div>
-                            <div>
-                                <field name="customer_id"/>
-                            </div>
-                            <div>
-                                <field name="status"/>
-                            </div>
-                            <div>
-                                <field name="assigned_photographer_id"/>
-                            </div>
-                            <div>
-                                <field name="preferred_date"/>
-                            </div>
-                            <div>
-                                <field name="product_category_id"/>
-                            </div>
-                        </div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
     <record id="snaptrack_booking_request_view_kanban" model="ir.ui.view">
         <field name="name">snaptrack.booking.request.view.kanban</field>
         <field name="model">snaptrack.booking.request</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="product_category_id" records_draggable="0">
-                <field name="product_category_id">
+            <kanban default_group_by="status" records_draggable="0">
+                <field name="status">
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_global_click">
@@ -115,18 +83,18 @@
                     <group>
                         <field name="name"/>
                         <field name="customer_id"/>
-                        <field name="request_details"/>
                         <field name="status"/>
                     </group>
                     <group>
                         <field name="assigned_photographer_id"/>
+                        <field name="address"/>
                         <field name="preferred_date"/>
                         <field name="product_category_id"/>
                     </group>
                     <notebook>
-                        <page string="Description">
+                        <page string="Request Details">
                             <group>
-                                <field name="description"/>
+                                <field name="request_details"/>
                             </group>
                         </page>
                     </notebook>

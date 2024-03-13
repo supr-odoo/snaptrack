@@ -9,14 +9,22 @@ class BookingRequest(models.Model):
         project = (
             self.env["project.project"].sudo().create({"name": self.customer_id.name})
         )
-        photographer = self.assigned_photographer_id  # Get the assigned photographer
-        task_vals = {
-            "name": self.customer_id.name,
-            "project_id": project.id,
-            "user_ids": [(4, photographer.id)],  # Assign the task to the photographer
-            "description": self.request_details,  # Display booking request details in task description
-            "date_deadline": self.preferred_date,  # Set deadline as preferred date
-        }
+        # photographer = self.assigned_photographer_id
+
+        for product in self.product_category_id:
+            product_name = product.name
+            tag = self.env["project.tags"].search([("name", "=", product_name)])
+            if not tag:
+                tag = self.env["project.tags"].create({"name": product_name})
+
+            task_vals = {
+                "name": self.customer_id.name,
+                "project_id": project.id,
+                # "user_ids": [(4, photographer.id)],
+                "date_deadline": self.preferred_date,
+                "tag_ids": [(4, tag.id)],
+            }
+
         Task.sudo().create(task_vals)
         self.status = "assigned"
         return super().generate_quotation()
