@@ -62,12 +62,42 @@ class BookingRequest(models.Model):
             }
             order_lines.append((0, 0, order_line))
             print("=============", self.customer_id.name)
+        partner = self.env["res.partner"].search(
+            [("name", "=", self.customer_id.name)], limit=1
+        )
+
+        if partner:
             quotation_values = {
-                "partner_id": self.customer_id.id,
-                "partner_invoice_id": self.customer_id.id,
-                "partner_shipping_id": self.customer_id.id,
-                "order_line": order_lines,
+                "partner_id": partner.id,
+                "partner_invoice_id": partner.id,
+                "partner_shipping_id": partner.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": product_category.id,
+                            "name": self.product_category_id.name,
+                            "price_unit": product_category.list_price,
+                            "product_uom_qty": 1,
+                        },
+                    )
+                ],
             }
+
+            quotation = self.env["sale.order"].create(quotation_values)
+            self.status = "assigned"
+
+            return {
+                "type": "ir.actions.act_window",
+                "name": "Quotation",
+                "res_model": "sale.order",
+                "res_id": quotation.id,
+                "view_mode": "form",
+                "target": "current",
+            }
+        else:
+            print("error")
 
         quotation = self.env["sale.order"].create(quotation_values)
         self.status = "assigned"
